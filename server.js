@@ -1,10 +1,16 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-let posts = {
-  0: "test",
-};
+var bodyParser = require("body-parser");
+
+let posts = {};
 let id = 1;
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
 app.get("/", (req, res) => res.send(posts));
 app.post("/", (req, res) => {
   posts = {
